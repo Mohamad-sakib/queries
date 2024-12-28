@@ -1,11 +1,20 @@
+const isTestPass = (actual, expected) => {
+  if (Array.isArray(expected)) {
+    return areArrayEqual(actual, expected);
+  }
+
+  if (typeof expectedElement === "object") {
+    return areObjectEqual(actual, expected);
+  }
+
+  return actual === expected;
+};
+
 export const testFrameWork = function (fn, expected, ...input) {
   const actual = fn(...input);
-  const isTestPass = Array.isArray(expected)
-    ? areArrayEqual(actual, expected)
-    : actual === expected;
-  const confirmationMsg = " expected " + expected;
-  if (!isTestPass) {
-    console.log("❌", confirmationMsg, "actual ", actual, input);
+
+  if (!isTestPass(actual, expected)) {
+    console.log("❌", " expected ", expected, "actual ", actual, input);
   }
 };
 
@@ -53,6 +62,8 @@ const areObjectEqual = (actualObj, expectedObj) => {
   });
 };
 
+//testing
+
 //testing for areObjectEqual
 const a = { one: 1 };
 
@@ -89,4 +100,3 @@ console.log(
 
 console.log(areArrayEqual([1], [2]));
 console.log(areArrayEqual([1, 2], [1, 2]));
-
