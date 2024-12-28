@@ -52,3 +52,41 @@ const areObjectEqual = (actualObj, expectedObj) => {
     return actualObj[key] === expectedObj[key];
   });
 };
+
+//testing for areObjectEqual
+const a = { one: 1 };
+
+console.log(areObjectEqual(a, a));
+console.log(areObjectEqual({}, {}));
+console.log(areObjectEqual({ one: 1 }, { one: 1 }));
+console.log(areObjectEqual({ one: 1 }, { one: 1, two: 2 }));
+console.log(areObjectEqual({ one: [1, 2] }, { one: [1, 2] }));
+console.log(areObjectEqual({ one: [1, 2] }, { one: [1, 2], two: 0 }));
+console.log(areObjectEqual({ one: [1, 2] }, { one: [1, { i: 1 }], two: 0 }));
+console.log(areObjectEqual({ one: [1, 2] }, { one: [1, { i: 1 }], two: 0 }));
+console.log(
+  areObjectEqual({ one: [1, { i: 1 }], two: 0 }, { one: [1, { i: 1 }], two: 0 })
+);
+
+//testing for areArrayEqual
+console.log("\n\ntesting for areArrayEqual");
+const b = [1, 3];
+
+console.log(areArrayEqual(b, b));
+console.log(areArrayEqual([], []));
+console.log(areArrayEqual([{ one: 1 }], [{ one: 1 }]));
+console.log(areArrayEqual([{ one: 1 }], [{ one: 1, two: 2 }]));
+console.log(areArrayEqual([{ one: [1, 2] }], [{ one: [1, 2] }]));
+console.log(areArrayEqual([{ one: [1, 2] }], [{ one: [1, 2], two: 0 }]));
+console.log(areArrayEqual([{ one: [1, 2] }], [{ one: [1, { i: 1 }], two: 0 }]));
+console.log(areArrayEqual([{ one: [1, 2] }], [{ one: [1, { i: 1 }], two: 0 }]));
+console.log(
+  areObjectEqual(
+    [{ one: [1, { i: 1 }], two: 0 }],
+    [{ one: [1, { i: 1 }], two: 0 }]
+  )
+);
+
+console.log(areArrayEqual([1], [2]));
+console.log(areArrayEqual([1, 2], [1, 2]));
+
